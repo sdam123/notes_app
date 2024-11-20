@@ -27,14 +27,14 @@ class NoteForm extends StatefulWidget {
 }
 
 class _NoteFormState extends State<NoteForm> {
-  final GlobalKey<FormState> globalKey = GlobalKey();
+  final GlobalKey<FormState> formkey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   String? title, content;
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: globalKey,
+      key: formkey,
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
@@ -62,8 +62,8 @@ class _NoteFormState extends State<NoteForm> {
           ),
           CustomButton(
             onTap: () {
-              if (globalKey.currentState!.validate()) {
-                globalKey.currentState!.save();
+              if (formkey.currentState!.validate()) {
+                formkey.currentState!.save();
               } else {
                 autovalidateMode = AutovalidateMode.always;
                 setState(() {});
