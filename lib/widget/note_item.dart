@@ -19,7 +19,7 @@ class NoteItem extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.only(left: 16, top: 18),
         decoration: BoxDecoration(
-            color: Colors.amber, borderRadius: BorderRadius.circular(16)),
+            color: Color(note.color), borderRadius: BorderRadius.circular(16)),
         child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
           ListTile(
             title: Text(
@@ -40,7 +40,9 @@ class NoteItem extends StatelessWidget {
                 size: 30,
                 color: Colors.black,
               ),
-              onPressed: () {},
+              onPressed: () {
+                note.delete();
+              },
             ),
           ),
           Padding(
