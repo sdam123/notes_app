@@ -30,7 +30,7 @@ class NoteBottomSheet extends StatelessWidget {
             }
             if (state is AddNoteSuccess) {
             
-              BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
+              BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes('');
                   Navigator.pop(context);
             }
           },

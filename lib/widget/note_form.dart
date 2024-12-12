@@ -32,6 +32,7 @@ class _NoteFormState extends State<NoteForm> {
             height: 18,
           ),
           CustomTextfield(
+            degaultText: '',
             hint: 'title',
             onSaved: (value) {
               title = value;
@@ -41,6 +42,7 @@ class _NoteFormState extends State<NoteForm> {
             height: 16,
           ),
           CustomTextfield(
+            degaultText: '',
             onSaved: (value) {
               content = value;
             },
@@ -55,10 +57,11 @@ class _NoteFormState extends State<NoteForm> {
                 if (formkey.currentState!.validate()) {
                   formkey.currentState!.save();
                   NoteModel noteModel = NoteModel(
+                      color: Colors.amber.value,
                       title: title!,
                       content: content!,
                       date: DateFormat.yMd().format(DateTime.now()),
-                      color: Colors.blue.value);
+                      );
 
                   BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                 } else {

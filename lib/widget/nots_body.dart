@@ -13,17 +13,11 @@ class NotsBody extends StatefulWidget {
 }
 
 class _NotsBodyState extends State<NotsBody> {
-  @override
-  void initState() {
-    //BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
-    // String ss = BlocProvider.of<NotesCubitCubit>(context).notes![3].title;
-    // print(ss);
-    super.initState();
-  }
-
+   bool isSearching=false;
+    String searchText ='';
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return  Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
@@ -31,12 +25,44 @@ class _NotsBodyState extends State<NotsBody> {
             height: 50,
           ),
           CustomAppbar(
+            widget: isSearching ? SearchView(onSubmitted: (p0) {
+              BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes(p0);
+              isSearching =false;
+              setState(() {
+                
+              });
+            },) : Spacer(),
             title: 'Notes',
             icon: Icons.search,
+            onTap: () {
+                isSearching=true;
+
+                setState(() {
+                  
+                });
+            },
           ),
           Expanded(child: NotesListView())
         ],
       ),
     );
+  }
+}
+
+class SearchView extends StatelessWidget {
+  const SearchView({
+    super.key, this.onSubmitted,
+  });
+    final void Function(String)? onSubmitted;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: TextField(
+onSubmitted: onSubmitted,
+                   
+      ),
+    ),
+    width: 248,);
   }
 }

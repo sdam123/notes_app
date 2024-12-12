@@ -5,8 +5,9 @@ import 'package:note_app/models/note_model.dart';
 import 'package:note_app/widget/note_item.dart';
 
 class NotesListView extends StatefulWidget {
-  const NotesListView({super.key});
+   NotesListView({super.key});
 
+  late List<NoteModel>   notes ;
   @override
   State<NotesListView> createState() => _NotesListViewState();
 }
@@ -14,29 +15,31 @@ class NotesListView extends StatefulWidget {
 class _NotesListViewState extends State<NotesListView> {
   @override
   Widget build(BuildContext context) {
-    List<NoteModel> notes =
-        BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
+  widget. notes =
+        BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes('');
 
+      
     return BlocConsumer<NotesCubitCubit, NotesCubitState>(
       listener: (context, state) {if(state is NoteRefresh){
         setState(() {
-          
+    
         });
-      }
+      } 
       },
+
       builder: (context, state) {
         
-        return  Padding(
+        return    widget.notes.isEmpty?   Center(child: Text('there are no notes',style: TextStyle(color: Colors.grey,fontSize: 18),)) : Padding(
           padding: const EdgeInsets.only(top: 16, bottom: 4),
           child: ListView.builder(
-            itemCount: notes.length,
+            itemCount:widget. notes.length,
             padding: EdgeInsets.zero,
-            physics: BouncingScrollPhysics(),
+            physics:const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
+                padding: const EdgeInsets.symmetric(vertical: 6),
                 child: NoteItem(
-                  note: notes[index],
+                  note:widget. notes[index],
                 ),
               );
             },

@@ -27,12 +27,14 @@ class NoteItem extends StatelessWidget {
           ListTile(
             title: Text(
               note.title,
+                overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 24, color: Colors.black),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.symmetric(vertical: 24),
               child: Text(
                 note.content,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     fontSize: 18, color: Colors.black.withOpacity(.4)),
               ),
@@ -45,7 +47,7 @@ class NoteItem extends StatelessWidget {
               ),
               onPressed: () {
                 note.delete();
-                BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
+                BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes('');
                
               },
             ),

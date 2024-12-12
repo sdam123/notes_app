@@ -6,3 +6,4 @@ class NotesCubitState {}
 final class NotesCubitInitial extends NotesCubitState {}
 
 final class NoteRefresh extends NotesCubitState {}
+final class NoteSearch extends NotesCubitState {}
