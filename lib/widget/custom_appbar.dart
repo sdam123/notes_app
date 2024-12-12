@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:note_app/widget/custom_icon.dart';
 
 class CustomAppbar extends StatelessWidget {
-  const CustomAppbar({super.key, required this.title, required this.icon});
+  const CustomAppbar({super.key, required this.title, required this.icon, this.onTap});
   final String title;
   final IconData icon;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,7 +15,7 @@ class CustomAppbar extends StatelessWidget {
           style: TextStyle(fontSize: 24),
         ),
         Spacer(),
-        CustumIcon(icon: icon)
+        CustumIcon(icon: icon ,onTap: onTap,)
       ],
     );
   }
